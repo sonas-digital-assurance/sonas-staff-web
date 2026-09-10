@@ -1,61 +1,133 @@
 import DashboardLayout from "@/layouts/DashboardLayout";
+import StatCard from "@/components/dashboard/StatCard";
+import TaskCard from "@/components/dashboard/TaskCard";
+import QuickActions from "@/components/dashboard/QuickActions";
+import RecentQuotationTable from "@/components/dashboard/RecentQuotationTable";
 
 export default function DashboardPage() {
   return (
     <DashboardLayout>
+      <div className="mx-auto max-w-[1600px]">
 
-      <div className="grid grid-cols-4 gap-6">
+        {/* Page heading */}
+        <div className="mb-8 flex items-end justify-between">
+          <div>
+            <p className="text-sm font-medium text-[#005BAC]">
+              BACK-OFFICE SONAS
+            </p>
 
-        <div className="rounded-xl bg-white p-6 shadow">
+            <h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">
+              Tableau de bord
+            </h1>
 
-          <h2 className="text-gray-500">
-            Clients
-          </h2>
+            <p className="mt-2 text-sm text-slate-500">
+              Vue d’ensemble de l’activité et des opérations à traiter.
+            </p>
+          </div>
 
-          <p className="mt-4 text-4xl font-bold">
-            0
-          </p>
+          <div className="hidden text-right sm:block">
+            <p className="text-sm font-medium text-slate-700">
+              10 septembre 2026
+            </p>
 
+            <p className="mt-1 text-xs text-slate-400">
+              Dernière mise à jour : à l’instant
+            </p>
+          </div>
         </div>
 
-        <div className="rounded-xl bg-white p-6 shadow">
+        {/* KPI */}
+        <section>
+          <div className="mb-4">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Indicateurs clés
+            </h2>
+          </div>
 
-          <h2 className="text-gray-500">
-            Véhicules
-          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <StatCard
+              title="Clients"
+              value="12 458"
+              change="+4,8 %"
+              icon="clients"
+            />
 
-          <p className="mt-4 text-4xl font-bold">
-            0
-          </p>
+            <StatCard
+              title="Véhicules"
+              value="8 291"
+              change="+2,1 %"
+              icon="vehicles"
+            />
 
-        </div>
+            <StatCard
+              title="Devis"
+              value="342"
+              change="+12,4 %"
+              icon="quotations"
+            />
 
-        <div className="rounded-xl bg-white p-6 shadow">
+            <StatCard
+              title="Polices"
+              value="7 845"
+              change="+3,7 %"
+              icon="policies"
+            />
+          </div>
+        </section>
 
-          <h2 className="text-gray-500">
-            Devis
-          </h2>
+        {/* Tasks */}
+        <section className="mt-10">
+          <div className="mb-4">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              À traiter
+            </h2>
+          </div>
 
-          <p className="mt-4 text-4xl font-bold">
-            0
-          </p>
+          <div className="grid gap-4 lg:grid-cols-3">
+            <TaskCard
+              title="Devis en attente"
+              count={12}
+              type="quotation"
+              description="Devis nécessitant une vérification ou une validation."
+            />
 
-        </div>
+            <TaskCard
+              title="Paiements à confirmer"
+              count={5}
+              type="payment"
+              description="Paiements reçus en attente de confirmation."
+            />
 
-        <div className="rounded-xl bg-white p-6 shadow">
+            <TaskCard
+              title="Polices à émettre"
+              count={8}
+              type="policy"
+              description="Dossiers validés prêts pour l’émission de la police."
+            />
+          </div>
+        </section>
 
-          <h2 className="text-gray-500">
-            Polices
-          </h2>
+        {/* Recent quotations */}
+        <section className="mt-10">
+          <RecentQuotationTable />
+        </section>
 
-          <p className="mt-4 text-4xl font-bold">
-            0
-          </p>
+        {/* Quick actions */}
+        <section className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-5">
+          <div className="mb-4">
+            <h2 className="text-sm font-semibold text-slate-900">
+              Actions rapides
+            </h2>
 
-        </div>
+            <p className="mt-1 text-sm text-slate-500">
+              Accédez rapidement aux opérations courantes.
+            </p>
+          </div>
+
+          <QuickActions />
+        </section>
 
       </div>
-
     </DashboardLayout>
   );
 }

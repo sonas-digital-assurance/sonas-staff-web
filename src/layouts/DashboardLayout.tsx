@@ -1,24 +1,24 @@
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
+import Sidebar from "@/components/layout/Sidebar";
+import Header from "@/components/layout/Header";
 
-interface Props {
+interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
-export default function DashboardLayout({ children }: Props) {
+export default function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-slate-100">
 
       <Sidebar />
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden">
 
         <Header />
 
-        <main className="flex-1 bg-slate-100 p-8">
-
+        <main className="flex-1 overflow-y-auto p-8">
           {children}
-
         </main>
 
       </div>
